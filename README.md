@@ -1,6 +1,6 @@
 StickyLayout
 
-[博文 http://licrafter.com/2016/10/15/AndroidStickyLayout%E4%B8%8E%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6/](http://licrafter.com/2016/10/15/AndroidStickyLayout%E4%B8%8E%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6/)
+[相关博文](http://licrafter.com/2016/10/15/AndroidStickyLayout%E4%B8%8E%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6/)
 ---
 
 # 前言
