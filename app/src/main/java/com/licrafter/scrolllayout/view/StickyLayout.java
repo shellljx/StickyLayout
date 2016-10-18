@@ -94,12 +94,10 @@ public class StickyLayout extends LinearLayout {
             case MotionEvent.ACTION_MOVE:
                 float dy = mLastY - y;
                 if (dy < 0 && Math.abs(dy) > mTouchSlop && mIsControlled && isRecyclerViewTop(getRecyclerView())) {
+                    mLastY = y;
                     mIsControlled = false;
                     mReDirect = true;
                     ev.setAction(MotionEvent.ACTION_CANCEL);
-                    dispatchTouchEvent(ev);
-                    ev.setAction(MotionEvent.ACTION_DOWN);
-                    return dispatchTouchEvent(ev);
                 } else {
                     mReDirect = false;
                 }
@@ -196,6 +194,7 @@ public class StickyLayout extends LinearLayout {
             int currY = mScroller.getCurrY();
             if (mDirection == DIRECTION.UP) {
                 if (isSticky()) {
+                    mIsControlled = true;
                     int distance = mScroller.getFinalY() - currY;
                     int duration = mScroller.getDuration() - mScroller.timePassed();
                     getRecyclerView().fling(0, getScrollerVelocity(distance, duration));
