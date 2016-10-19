@@ -2,6 +2,7 @@
 
 [相关介绍博文](http://licrafter.com/2016/10/15/AndroidStickyLayout%E4%B8%8E%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6/)
 
+一个Android中拥有黏性头部的滑动布局，整体布局内容滑动和列表滑动完美切换，惯性传递的自定义控件。
 ---
 
 ![gif](http://7vzpfd.com1.z0.glb.clouddn.com/giphy.gif)
