@@ -9,99 +9,67 @@
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="370dp"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
         android:clickable="true"
         android:orientation="vertical">
 
-        <android.support.v4.view.ViewPager
+        <ImageView
             android:id="@+id/header01"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:background="#50ae"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#50d"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/iv01"
+            <View
+                android:background="#eb4f38"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="10dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content"/>
 
-            <ImageView
-                android:id="@+id/iv02"
+            <View
+                android:background="#ea8010"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="10dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content"/>
 
-            <ImageView
-                android:id="@+id/iv03"
+            <View
+                android:background="#f4c600"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="10dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content"/>
 
-            <ImageView
-                android:id="@+id/iv04"
+            <View
+                android:background="#9d55b8"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="10dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="120dp"
             android:background="#50de"
             android:clickable="true">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/bg_01"/>
         </LinearLayout>
 
-        <LinearLayout
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn01"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Button"/>
-
-            <Button
-                android:id="@+id/btn02"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Button"/>
-
-            <Button
-                android:id="@+id/btn03"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Button"/>
-
-            <Button
-                android:id="@+id/btn04"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Button"/>
-        </LinearLayout>
-
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <android.support.v4.view.ViewPager

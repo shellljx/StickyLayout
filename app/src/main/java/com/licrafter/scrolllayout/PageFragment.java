@@ -17,13 +17,13 @@ import android.widget.Toast;
  **/
 public class PageFragment extends Fragment {
 
-    private RecyclerView recyclerView;
+    private RecyclerView mRecyclerView;
     private int mPosition;
 
-    public static PageFragment getInstance(int position){
+    public static PageFragment getInstance(int position) {
         PageFragment fragment = new PageFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("position",position);
+        bundle.putInt("position", position);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -38,9 +38,9 @@ public class PageFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPosition = getArguments().getInt("position");
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new GoodsAdapter());
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setAdapter(new GoodsAdapter());
     }
 
     private class GoodsAdapter extends RecyclerView.Adapter<GoodsVH> {
@@ -52,7 +52,7 @@ public class PageFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(GoodsVH holder, int position) {
-            holder.textView.setText("商品类别->"+mPosition+"  位置->"+position);
+            holder.textView.setText("商品类别->" + mPosition + "  位置->" + position);
         }
 
         @Override
@@ -63,15 +63,16 @@ public class PageFragment extends Fragment {
 
     private class GoodsVH extends RecyclerView.ViewHolder {
 
-        public TextView textView;
-        public GoodsVH(View itemView) {
+        TextView textView;
+
+        GoodsVH(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.text);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(),"点击商品",Toast.LENGTH_SHORT).show();
-                    android.util.Log.d("ljx","click Goods");
+                    Toast.makeText(getContext(), "点击商品", Toast.LENGTH_SHORT).show();
+                    android.util.Log.d("ljx", "click Goods");
                 }
             });
         }

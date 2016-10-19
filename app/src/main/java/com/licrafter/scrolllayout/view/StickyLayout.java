@@ -2,6 +2,7 @@ package com.licrafter.scrolllayout.view;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +14,8 @@ import android.view.ViewConfiguration;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
-import com.licrafter.scrolllayout.DipConvertUtil;
 import com.licrafter.scrolllayout.HomeFragment;
+import com.licrafter.scrolllayout.R;
 
 /**
  * author: shell
@@ -23,6 +24,8 @@ import com.licrafter.scrolllayout.HomeFragment;
 public class StickyLayout extends LinearLayout {
 
     private ViewPager mContentView;
+    private TabLayout mStickyView;
+    private LinearLayout mHeaderView;
 
     private float mLastY;
     private int mLastScrollerY;
@@ -66,12 +69,14 @@ public class StickyLayout extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mContentView = (ViewPager) getChildAt(1);
+        mContentView = (ViewPager) findViewById(R.id.goodsViewPager);
+        mHeaderView = (LinearLayout) findViewById(R.id.header);
+        mStickyView = (TabLayout) findViewById(R.id.tabLayout);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        mHeaderHeight = DipConvertUtil.dip2px(getContext(), 330);
+        mHeaderHeight = mHeaderView.getMeasuredHeight() - mStickyView.getMeasuredHeight();
         int newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(MeasureSpec.getSize(heightMeasureSpec) + mHeaderHeight, MeasureSpec.EXACTLY);
         super.onMeasure(widthMeasureSpec, newHeightMeasureSpec);
     }
