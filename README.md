@@ -7,6 +7,7 @@
 ![gif](http://7vzpfd.com1.z0.glb.clouddn.com/giphy.gif)
 
 1.How to use
+
 这不是一个第三发库，只是根据需求对  `Android`  的触摸事件的一次实践， `StickyLayout`  继承自  `LinearLayout`  嵌套在头布局和列表布局的最外层即可，使用起来非常简单。
 ```xml
 <com.licrafter.scrolllayout.view.StickyLayout
