@@ -3,10 +3,10 @@
 [相关介绍博文](http://licrafter.com/2016/10/15/AndroidStickyLayout%E4%B8%8E%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6/)
 
 ---
-1. GIF
+
 ![gif](http://7vzpfd.com1.z0.glb.clouddn.com/giphy.gif)
 
-2. How to use
+1.How to use
 这不是一个第三发库，只是根据需求对  `Android`  的触摸事件的一次实践， `StickyLayout`  继承自  `LinearLayout`  嵌套在头布局和列表布局的最外层即可，使用起来非常简单。
 ```xml
 <com.licrafter.scrolllayout.view.StickyLayout
