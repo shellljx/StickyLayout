@@ -76,6 +76,7 @@ public class StickyLayout extends LinearLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        //测量header高度,设置 StickyLayout 的高度
         mHeaderHeight = mHeaderView.getMeasuredHeight() - mStickyView.getMeasuredHeight();
         int newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(MeasureSpec.getSize(heightMeasureSpec) + mHeaderHeight, MeasureSpec.EXACTLY);
         super.onMeasure(widthMeasureSpec, newHeightMeasureSpec);
@@ -88,6 +89,7 @@ public class StickyLayout extends LinearLayout {
         float y = ev.getY();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                //DOWN 事件停止 scroller
                 if (!mScroller.isFinished() && !isSticky() && isRecyclerViewTop(getRecyclerView()) || !mScroller.isFinished() && !isSticky() && mDirection == DIRECTION.UP) {
                     mScroller.forceFinished(true);
                     ev.setAction(MotionEvent.ACTION_CANCEL);
@@ -98,6 +100,8 @@ public class StickyLayout extends LinearLayout {
                 break;
             case MotionEvent.ACTION_MOVE:
                 float dy = mLastY - y;
+                //当列表乡下滑动到顶部,发送 ACTION_CANCEL 让 StickyLayout 获取滑动事件
+                //有两种情况,一种是头部处于黏性状态,一种是头部处于非粘性状态
                 if (dy < 0 && Math.abs(dy) > mTouchSlop && mIsControlled && isRecyclerViewTop(getRecyclerView())) {
                     mLastY = y;
                     mIsControlled = false;
@@ -128,6 +132,8 @@ public class StickyLayout extends LinearLayout {
             case MotionEvent.ACTION_DOWN:
                 break;
             case MotionEvent.ACTION_MOVE:
+                //非粘性状态列表没有滑动到顶部,向上滑||非粘性状态列表滑动到顶部||黏性状态向下滑,列表到达顶部
+                //这3种情况都需要拦截滑动事件
                 float dy = mLastY - y;
                 if (!isSticky() && Math.abs(dy) > mTouchSlop && !isRecyclerViewTop(getRecyclerView()) && dy > 0 || !isSticky() && Math.abs(dy) > mTouchSlop && isRecyclerViewTop(getRecyclerView()) || isSticky() && dy < 0 && isRecyclerViewTop(getRecyclerView())) {
                     mLastY = y;
@@ -138,6 +144,8 @@ public class StickyLayout extends LinearLayout {
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                //由于在 onTouch 中转发了一个 ACTION_DOWN ,在这时恰好手指抬起触发 ACTION_UP
+                //就会触发 click 事件,所以这时要拦截 ACTION_UP 事件
                 if (isSticky() && mIsDragging) {
                     mIsDragging = false;
                     return true;
@@ -163,11 +171,11 @@ public class StickyLayout extends LinearLayout {
                 }
                 if (mIsDragging) {
                     scrollBy(0, (int) (dy + 0.5));
+                    //当滑动到黏性状态后转发事件模拟再次点击事件
                     if (isSticky()) {
                         event.setAction(MotionEvent.ACTION_DOWN);
                         dispatchTouchEvent(event);
                         event.setAction(MotionEvent.ACTION_CANCEL);
-                        //此处还是整体滑动阶段,所以还会走intrcept up事件
                     }
                     mLastY = y;
                 }
